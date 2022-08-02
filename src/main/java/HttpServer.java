@@ -4,6 +4,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +30,12 @@ public abstract class HttpServer {
                         break;
                     }
                     lines.add(line.split(" ")[1]);
-                    System.out.println(line);
                 }
                 if (lines.get(0).equals("/index")){
-                    output.print("<b> HOMEPAGE </b>");
+                    StringBuilder homePage = new StringBuilder();
+                    Files.readAllLines(Paths.get("src/main/resources/index.html"))
+                            .forEach(homePage::append);
+                    output.print(homePage);
                 }
                 else {
                     output.print("<b> BOLD TEXT FOR OUR VIEWING PLEASURE</b>");
