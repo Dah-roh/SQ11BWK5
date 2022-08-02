@@ -30,8 +30,7 @@ public abstract class HttpServer {
                     lines.add(line.split(" ")[1]);
                     System.out.println(line);
                 }
-
-                if (lines.get(0).equals("/home")){
+                if (lines.get(0).equals("/index")){
                     output.print("<b> HOMEPAGE </b>");
                 }
                 else {
